@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#2C7A78">
+  <meta name="description" content="A leakage-aware mode-choice case study comparing MNL and nested logit with explicit availability and household grouping.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="交通手段選択の多項ロジット・ネスティッドロジット分析 / Multinomial and Nested Logit Analysis of Travel Mode Choice">
+  <meta property="og:description" content="A leakage-aware mode-choice case study comparing MNL and nested logit with explicit availability and household grouping.">
+  <meta property="og:url" content="https://kelly-wk.github.io/transport-mode-choice-mnl/">
+  <meta property="og:image" content="https://kelly-wk.github.io/transport-mode-choice-mnl/social-preview.svg">
+  <title>交通手段選択の多項ロジット・ネスティッドロジット分析 / Multinomial and Nested Logit Analysis of Travel Mode Choice</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="tier-public_case_study" style="--accent:#2C7A78;--accent-dark:#252A32;--accent-soft:#E3F0EF;--hero-start:#252A32">
+  <a class="skip-link" href="#content">本文へ / Skip to content</a>
+  <header class="project-hero">
+    <div class="hero-inner">
+      <div class="hero-topline">
+        <div class="eyebrow">
+          <span>都市・交通・地域データ分析 / Urban, Mobility &amp; Regional Analytics</span>
+        </div>
+        <p class="tier-badge"><span lang="ja">公開ケーススタディ</span><span lang="en">Public case study</span></p>
+      </div>
+      <h1><span lang="ja">交通手段選択の多項ロジット・ネスティッドロジット分析</span><span lang="en">Multinomial and Nested Logit Analysis of Travel Mode Choice</span></h1>
+      <div class="hero-summary">
+        <div class="copy-pair lede"><p lang="ja">利用可能選択肢と世帯グループを明示し、MNLとネスティッドロジットを漏洩なく比較する選択モデル事例。</p><p class="translation" lang="en">A leakage-aware mode-choice case study comparing MNL and nested logit with explicit availability and household grouping.</p></div>
+        <div class="hero-facts">
+          <dl class="project-meta">
+            <div><dt>状態 / Status</dt><dd><span lang="ja">修復済み・公開版は合成データ</span><span lang="en">Repaired / public synthetic workflow</span></dd></div>
+            <div><dt>言語 / Language</dt><dd>Python</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="method-block">
+        <p class="method-label">技術スタック / Tech Stack</p>
+        <ul class="method-list" aria-label="Methods"><li>Python</li><li>SciPy</li><li>Multinomial logit</li><li>Nested logit</li><li>Availability auditing</li><li>Household-grouped split</li><li>Cluster bootstrap</li></ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="shell">
+    <section class="evidence-figure" aria-labelledby="figure-title">
+      <div class="section-heading"><p>00</p><h2 id="figure-title">代表的な成果図 <span lang="en">Selected Result Figure</span></h2></div>
+      <figure>
+        <img src="assets/hero.svg" alt="交通手段選択の多項ロジット・ネスティッドロジット分析の代表的な成果図 / Selected result figure for Multinomial and Nested Logit Analysis of Travel Mode Choice">
+        <figcaption><span lang="ja">公開可能な検証結果から選んだ図です。</span> <span lang="en">Selected from the validation evidence cleared for publication.</span></figcaption>
+      </figure>
+    </section>
+    <section aria-labelledby="highlights-title">
+      <div class="section-heading"><p>01</p><h2 id="highlights-title">主なポイント <span lang="en">Highlights</span></h2></div>
+      <div class="highlight-grid"><article class="highlight">
+          <span class="highlight-number" aria-hidden="true">1</span>
+          <div class="copy-pair"><p lang="ja">420世帯の公開合成フィクスチャで、推定から検証までの全工程を再現。</p><p class="translation" lang="en">A public synthetic fixture of 420 households reproduces the full estimation-to-validation workflow.</p></div>
+        </article><article class="highlight">
+          <span class="highlight-number" aria-hidden="true">2</span>
+          <div class="copy-pair"><p lang="ja">観測された選択が利用不可なら即時失敗させ、選択集合の不整合を黙認しない。</p><p class="translation" lang="en">Hard-fails when an observed choice is unavailable instead of silently accepting an inconsistent choice set.</p></div>
+        </article><article class="highlight">
+          <span class="highlight-number" aria-hidden="true">3</span>
+          <div class="copy-pair"><p lang="ja">精度と真クラス平均確率を区別し、世帯単位の分割とクラスタブートストラップを採用。</p><p class="translation" lang="en">Distinguishes accuracy from mean true-class probability and uses household grouping plus cluster bootstrap.</p></div>
+        </article></div>
+    </section>
+
+    <section aria-labelledby="flow-title">
+      <div class="section-heading"><p>02</p><h2 id="flow-title">研究の流れ <span lang="en">Research Flow</span></h2></div>
+      <ol class="flow-grid"><li class="flow-card" data-step="1">
+              <h3><span lang="ja">課題</span><span lang="en">Problem</span></h3>
+              <div class="copy-pair"><p lang="ja">交通手段選択で、利用可能性違反と同一世帯のリークを防ぎつつモデルを比較する。</p><p class="translation" lang="en">Compare travel-mode models while preventing availability violations and same-household leakage.</p></div>
+            </li><li class="flow-card" data-step="2">
+              <h3><span lang="ja">方法</span><span lang="en">Method</span></h3>
+              <div class="copy-pair"><p lang="ja">代替固有効用を持つMNLとネスティッドロジットを最尤推定し、利用可能性を監査する。</p><p class="translation" lang="en">Estimate MNL and nested-logit models by maximum likelihood with explicit availability auditing.</p></div>
+            </li><li class="flow-card" data-step="3">
+              <h3><span lang="ja">検証</span><span lang="en">Validation</span></h3>
+              <div class="copy-pair"><p lang="ja">世帯単位ホールドアウト、予測確率、クラスタブートストラップで汎化と不確実性を評価する。</p><p class="translation" lang="en">Assess generalization and uncertainty with household holdout, predictive probabilities, and cluster bootstrap.</p></div>
+            </li><li class="flow-card" data-step="4">
+              <h3><span lang="ja">成果</span><span lang="en">Outcome</span></h3>
+              <div class="copy-pair"><p lang="ja">合成データ上で、選択集合の整合性から外部評価まで監査可能なワークフローを構築。</p><p class="translation" lang="en">Built an auditable synthetic workflow from choice-set integrity through out-of-sample evaluation.</p></div>
+            </li></ol>
+    </section>
+
+    <section class="limitations" aria-labelledby="limits-title">
+      <div class="section-heading"><p>03</p><h2 id="limits-title">限界と適用範囲 <span lang="en">Limitations &amp; Scope</span></h2></div>
+      <ul><li><div class="copy-pair"><p lang="ja">係数は観察的関連であり、元の個票データの公開権限も未解決なため、実データ結果は公開しない。</p><p class="translation" lang="en">Coefficients are observational associations, and rights to the original microdata are unresolved, so real-data results are not published.</p></div></li></ul>
+    </section>
+
+    <section class="publication" aria-labelledby="publication-title">
+      <div class="section-heading"><p>04</p><h2 id="publication-title">公開範囲 <span lang="en">Publication Boundary</span></h2></div>
+      <div class="publication-panel">
+        <p class="tier-badge"><span lang="ja">公開ケーススタディ</span><span lang="en">Public case study</span></p>
+        <div class="copy-pair"><p lang="ja">公開図表はCC0の合成フィクスチャのみを使用。元の個票データ、実データ指標、私有結果は公開しない。</p><p class="translation" lang="en">Public figures use only the CC0 synthetic fixture. Original microdata, real-data metrics, and private results are not published.</p></div>
+      </div>
+      <div class="cta-grid"><a class="cta" href="https://github.com/kelly-wk/transport-mode-choice-mnl"><strong lang="ja">リポジトリ</strong><span lang="en">Repository</span><span aria-hidden="true">↗</span></a><a class="cta" href="https://github.com/kelly-wk/transport-mode-choice-mnl/blob/main/CASE_STUDY.md"><strong lang="ja">レポート</strong><span lang="en">Report</span><span aria-hidden="true">↗</span></a><span class="cta is-disabled" aria-disabled="true"><strong lang="ja">再現手順</strong><span lang="en">Reproduce</span><small>この公開レベルでは利用できません / Not available at this publication tier</small></span></div>
+    </section>
+  </main>
+
+  <footer>
+    <p><span lang="ja">公開レベルはページ上で常に明示されます。</span> <span lang="en">Publication tier is always shown explicitly.</span></p>
+    <p>kelly-wk · transport-mode-choice-mnl</p>
+  </footer>
+</body>
+</html>
